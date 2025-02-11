@@ -11,8 +11,9 @@ const DraggableGift = ({ giftProp }: { giftProp: StaticImageData | string }) => 
       <motion.div
         drag
         dragConstraints={constraints}
-        whileTap={{ cursor: "grabbing" }}
-        whileDrag={{ scale: 1.2 }}
+        whileHover={{ scale: 1.1 }}
+        whileDrag={{ scale: 0.9, rotate: 10 }}
+        whileTap={{ cursor: "grabbing", scale: 1.1 }}
         className="cursor-grab w-36 h-36 absolute z-20 "
       >
         <Image
