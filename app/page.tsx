@@ -7,12 +7,14 @@ import sadCat from '@/public/sadcat.png';
 import chocolate from '@/public/chocolate.png';
 import flower from '@/public/flower.png';
 import bracelet from '@/public/bracelet.png';
+import teaseCat from '@/public/teasecat.png';
 import Image from 'next/image';
 import { useState } from 'react';
-import DraggableGift from './components/DraggableGift';
+import DraggableGift from '@/components/DraggableGift';
 type cursorType = 'default' | 'yes' | 'no';
 import { motion } from 'motion/react'
-import useDrag from './hooks/useDrag';
+import useDrag from '../hooks/useDrag';
+import Link from 'next/link';
 
 const questions: string[] = [
   "Will you be my valentine?",
@@ -35,14 +37,16 @@ export default function Home() {
       noButton.style.left = `${Math.random() * 50}vw`;
     }
   }
+
   return (
     <main className="bg-cotton text-grape flex flex-col items-center justify-center  min-h-screen w-full p-5">
 
       <Image className="aspect-square w-48 rounded-xl mb-5 object-cover"
         src={
-          cursor === 'yes' ? happyCat1 :
-            cursor === 'no' ? cryCat :
-              rejectionCount >= questions.length * 10 ? sadCat : questionCat
+          rejectionCount == 69 ? teaseCat :
+            cursor === 'yes' ? happyCat1 :
+              cursor === 'no' ? cryCat :
+                rejectionCount >= questions.length * 10 ? sadCat : questionCat
         }
         alt='happycat' />
       <h1 className="text-2xl  text-center font-bold">
@@ -58,29 +62,36 @@ export default function Home() {
         <DraggableGift giftProp={bracelet} />
       )}
       <div className="flex flex-row gap-10">
+
         <button
           className={` ${rejectionCount > 0 ? 'px-20' : 'px-10'
             } py-2 rounded-lg text-white mt-5 bg-candy hover:bg-candy/70 border-2 z-10`}
           onMouseEnter={() => setCursor('yes')}
-          onMouseLeave={() => setCursor('default')}
+          onMouseLeave={() => setCursor('default')
+          }
         >
-          {rejectionCount > 68 ? "I wass kiddinggg, it's a yesssssssssss ml!" : "Yesss"}
+          <Link href="/wifey">
+            {rejectionCount > 68 ? "I wass kiddinggg, it's a yesssssssssss ml!" : "Yesss"}
+          </Link>
         </button>
+
         <motion.div ref={dragContainerRef}
           drag dragConstraints={constraints}
           whileDrag={{ scale: 0.9, rotate: 5 }}
           whileTap={{ scale: 1.1 }}
           className={`${rejectionCount == 69 ? 'relative' : ''}`}
         >
-          <button
-            id='noButton'
-            onMouseEnter={() => {
-              setCursor('no');
-              handleRejection();
-            }}
-            className="bg-blue px-10 py-2 rounded-lg text-white mt-5 border-2 z-10 hover:bg-blue/70  ">
-            {rejectionCount > 68 ? "Go for it, it's still a no." : "No wayyy"}
-          </button>
+          <Link href="/sad">
+            <button
+              id='noButton'
+              onMouseEnter={() => {
+                setCursor('no');
+                handleRejection();
+              }}
+              className="bg-blue px-10 py-2 rounded-lg text-white mt-5 border-2 z-10 hover:bg-blue/70  ">
+              {rejectionCount > 68 ? "Go for it, it's still a no." : "No wayyy"}
+            </button></Link>
+
         </motion.div>
 
       </div>
