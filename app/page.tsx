@@ -27,7 +27,6 @@ export default function Home() {
   const { dragContainerRef, constraints } = useDrag();
 
   const handleRejection = () => {
-
     const noButton = document.getElementById('noButton');
     if (noButton && rejectionCount < 69) {
       setRejectionCount((prev) => prev + 1);
@@ -69,7 +68,9 @@ export default function Home() {
         </button>
         <motion.div ref={dragContainerRef}
           drag dragConstraints={constraints}
-          className='relative'
+          whileDrag={{ scale: 0.9, rotate: 5 }}
+          whileTap={{ scale: 1.1 }}
+          className={`${rejectionCount == 69 ? 'relative' : ''}`}
         >
           <button
             id='noButton'
