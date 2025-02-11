@@ -9,9 +9,15 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        candy: "#ff69b4",
+        lemon: "#ffec47",
+        blue: "#82ddf0",
+        cotton: "#ffa3c0",
+        grape: "#8a3e99"
       },
+      fontFamily: {
+        poppins: "var(--font-poppins)", 
+      }
     },
   },
   plugins: [],
