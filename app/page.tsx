@@ -11,6 +11,8 @@ import Image from 'next/image';
 import { useState } from 'react';
 import DraggableGift from './components/DraggableGift';
 type cursorType = 'default' | 'yes' | 'no';
+import { motion } from 'motion/react'
+import useDrag from './hooks/useDrag';
 
 const questions: string[] = [
   "Will you be my valentine?",
@@ -21,7 +23,8 @@ const questions: string[] = [
 
 export default function Home() {
   const [cursor, setCursor] = useState<cursorType>('default');
-  const [rejectionCount, setRejectionCount] = useState(0);
+  const [rejectionCount, setRejectionCount] = useState(69);
+  const { dragContainerRef, constraints } = useDrag();
 
   const handleRejection = () => {
 
@@ -29,8 +32,8 @@ export default function Home() {
     if (noButton && rejectionCount < 69) {
       setRejectionCount((prev) => prev + 1);
       noButton.style.position = 'absolute';
-      noButton.style.top = `${Math.random() * 80}vh`;
-      noButton.style.left = `${Math.random() * 80}vw`;
+      noButton.style.top = `${Math.random() * 50}vh`;
+      noButton.style.left = `${Math.random() * 50}vw`;
     }
   }
   return (
@@ -55,24 +58,30 @@ export default function Home() {
       {rejectionCount >= 30 && (
         <DraggableGift giftProp={bracelet} />
       )}
-      <div className="flex flex-row gap-10 z-10">
+      <div className="flex flex-row gap-10">
         <button
           className={` ${rejectionCount > 0 ? 'px-20' : 'px-10'
-            } py-2 rounded-lg text-white mt-5 bg-candy hover:bg-candy/70 border-2 `}
+            } py-2 rounded-lg text-white mt-5 bg-candy hover:bg-candy/70 border-2 z-10`}
           onMouseEnter={() => setCursor('yes')}
           onMouseLeave={() => setCursor('default')}
         >
           {rejectionCount > 68 ? "I wass kiddinggg, it's a yesssssssssss ml!" : "Yesss"}
         </button>
-        <button
-          id='noButton'
-          onMouseEnter={() => {
-            setCursor('no');
-            handleRejection();
-          }}
-          className="bg-blue px-10 py-2 rounded-lg text-white mt-5 border-2  ">
-          {rejectionCount > 68 ? "Go for it, it's still a no." : "No wayyy"}
-        </button>
+        <motion.div ref={dragContainerRef}
+          drag dragConstraints={constraints}
+          className='relative'
+        >
+          <button
+            id='noButton'
+            onMouseEnter={() => {
+              setCursor('no');
+              handleRejection();
+            }}
+            className="bg-blue px-10 py-2 rounded-lg text-white mt-5 border-2 z-10 hover:bg-blue/70  ">
+            {rejectionCount > 68 ? "Go for it, it's still a no." : "No wayyy"}
+          </button>
+        </motion.div>
+
       </div>
       <div id="messageBox" className='flex flex-col items-center justify-center mt-10'>
         {rejectionCount > 0 && <h2 className="text-sm ">You've tried to reject me {rejectionCount} time{rejectionCount === 1 ? '' : 's'}!</h2>}
