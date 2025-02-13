@@ -31,8 +31,8 @@ export default function Home() {
 
   const handleRejection = () => {
     const noButton = document.getElementById('noButton');
-    if (noButton && rejectionCount < 69) {
-      setRejectionCount((prev) => prev + 10);
+    if (noButton && rejectionCount < 7) {
+      setRejectionCount((prev) => prev + 1);
       noButton.style.position = 'absolute';
       noButton.style.top = `${Math.random() * 50}vh`;
       noButton.style.left = `${Math.random() * 50}vw`;
@@ -44,28 +44,28 @@ export default function Home() {
 
       <Image className="aspect-square w-48 rounded-xl mb-5 object-cover"
         src={
-          rejectionCount == 69 ? teaseCat :
+          rejectionCount == 6 ? teaseCat :
             cursor === 'yes' ? happyCat1 :
               cursor === 'no' ? cryCat :
-                rejectionCount >= questions.length * 10 ? sadCat : questionCat
+                rejectionCount >= questions.length  ? sadCat : questionCat
         }
         alt='happycat' />
       <h1 className="text-2xl  text-center font-bold">
-        {rejectionCount > 68 ? 'Fine, I will ask someone elseee!' : rejectionCount >= questions.length * 10 ? 'Please say yesss' : `${questions[Math.floor(rejectionCount / 10)]}`}
+        {rejectionCount > 6 ? 'Fine, I will ask someone elseee!' : rejectionCount >= questions.length  ? 'Please say yesss' : `${questions[Math.floor(rejectionCount / 1)]}`}
       </h1>
-      {rejectionCount >= 10 && (
+      {rejectionCount >= 1 && (
         <DraggableGift giftProp={chocolate} />
       )}
-      {rejectionCount >= 20 && (
+      {rejectionCount >= 2 && (
         <DraggableGift giftProp={flower} />
       )}
-      {rejectionCount >= 30 && (
+      {rejectionCount >= 3 && (
         <DraggableGift giftProp={bracelet} />
       )}
-      {rejectionCount >= 40 && (
+      {rejectionCount >= 4 && (
         <DraggableGift giftProp={teddy} />
       )}
-      {rejectionCount >= 50 && (
+      {rejectionCount >= 5 && (
         <DraggableGift giftProp={letter} opens={true} />
       )}
       <div className="flex flex-row gap-10">
@@ -78,7 +78,7 @@ export default function Home() {
           }
         >
           <Link href="/wifey">
-            {rejectionCount > 68 ? `I wass kiddinggg, its a yesssssssssss ml!` : "Yesss"}
+            {rejectionCount > 6 ? `I wass kiddinggg, its a yesssssssssss ml!` : "Yesss"}
           </Link>
         </button>
         <Link href="/sad">
@@ -89,7 +89,7 @@ export default function Home() {
               handleRejection();
             }}
             className="bg-blue px-10 py-2 rounded-lg text-white mt-5 border-2 z-10 hover:bg-blue/70  ">
-            {rejectionCount > 68 ? "Go for it, its still a no." : "No wayyy"}
+            {rejectionCount > 6 ? "Go for it, its still a no." : "No wayyy"}
           </button></Link>
       </div>
       <div id="messageBox" className='flex flex-col items-center justify-center mt-10'>
