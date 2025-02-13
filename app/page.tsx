@@ -78,7 +78,7 @@ export default function Home() {
           }
         >
           <Link href="/wifey">
-            {rejectionCount > 68 ? "I wass kiddinggg, it's a yesssssssssss ml!" : "Yesss"}
+            {rejectionCount > 68 ? `I wass kiddinggg, its a yesssssssssss ml!` : "Yesss"}
           </Link>
         </button>
         <Link href="/sad">
@@ -89,11 +89,11 @@ export default function Home() {
               handleRejection();
             }}
             className="bg-blue px-10 py-2 rounded-lg text-white mt-5 border-2 z-10 hover:bg-blue/70  ">
-            {rejectionCount > 68 ? "Go for it, it's still a no." : "No wayyy"}
+            {rejectionCount > 68 ? "Go for it, its still a no." : "No wayyy"}
           </button></Link>
       </div>
       <div id="messageBox" className='flex flex-col items-center justify-center mt-10'>
-        {rejectionCount > 0 && <h2 className="text-sm ">You've tried to reject me {rejectionCount} time{rejectionCount === 1 ? '' : 's'}!</h2>}
+        {rejectionCount > 0 && <h2 className="text-sm ">You&apos;ve tried to reject me {rejectionCount} time{rejectionCount === 1 ? '' : 's'}!</h2>}
       </div>
       <div className='size-48 flex items-center justify-center text-center text-sm border-2 rounded-xl fixed bottom-10 right-10 border-grape p-5'>
         Drag your gifts here to claim them!
