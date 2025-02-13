@@ -8,12 +8,12 @@ import chocolate from '@/public/chocolate.png';
 import flower from '@/public/flower.png';
 import bracelet from '@/public/bracelet.png';
 import teaseCat from '@/public/teasecat.png';
+import teddy from '@/public/teddy.png';
+import letter from '@/public/letter.png';
 import Image from 'next/image';
 import { useState } from 'react';
 import DraggableGift from '@/components/DraggableGift';
 type cursorType = 'default' | 'yes' | 'no';
-import { motion } from 'motion/react'
-import useDrag from '../hooks/useDrag';
 import Link from 'next/link';
 
 const questions: string[] = [
@@ -21,12 +21,13 @@ const questions: string[] = [
   "What if I give you a chocolate?",
   "What if I give you a flower?",
   "What if I give you this bracelet?",
+  "What if I give you this teddy?",
+  "Even if I write you this beautiful letter?",
 ]
 
 export default function Home() {
   const [cursor, setCursor] = useState<cursorType>('default');
   const [rejectionCount, setRejectionCount] = useState(0);
-  const { dragContainerRef, constraints } = useDrag();
 
   const handleRejection = () => {
     const noButton = document.getElementById('noButton');
@@ -61,6 +62,12 @@ export default function Home() {
       {rejectionCount >= 30 && (
         <DraggableGift giftProp={bracelet} />
       )}
+      {rejectionCount >= 40 && (
+        <DraggableGift giftProp={teddy} />
+      )}
+      {rejectionCount >= 50 && (
+        <DraggableGift giftProp={letter} opens={true} />
+      )}
       <div className="flex flex-row gap-10">
 
         <button
@@ -74,16 +81,16 @@ export default function Home() {
             {rejectionCount > 68 ? "I wass kiddinggg, it's a yesssssssssss ml!" : "Yesss"}
           </Link>
         </button>
-          <Link href="/sad">
-            <button
-              id='noButton'
-              onMouseEnter={() => {
-                setCursor('no');
-                handleRejection();
-              }}
-              className="bg-blue px-10 py-2 rounded-lg text-white mt-5 border-2 z-10 hover:bg-blue/70  ">
-              {rejectionCount > 68 ? "Go for it, it's still a no." : "No wayyy"}
-            </button></Link>
+        <Link href="/sad">
+          <button
+            id='noButton'
+            onMouseEnter={() => {
+              setCursor('no');
+              handleRejection();
+            }}
+            className="bg-blue px-10 py-2 rounded-lg text-white mt-5 border-2 z-10 hover:bg-blue/70  ">
+            {rejectionCount > 68 ? "Go for it, it's still a no." : "No wayyy"}
+          </button></Link>
       </div>
       <div id="messageBox" className='flex flex-col items-center justify-center mt-10'>
         {rejectionCount > 0 && <h2 className="text-sm ">You've tried to reject me {rejectionCount} time{rejectionCount === 1 ? '' : 's'}!</h2>}

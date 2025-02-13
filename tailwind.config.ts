@@ -17,6 +17,7 @@ export default {
       },
       fontFamily: {
         poppins: "var(--font-poppins)", 
+        pacifico: "var(--font-pacifico)", 
       }
     },
   },
