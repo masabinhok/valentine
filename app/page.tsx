@@ -47,11 +47,11 @@ export default function Home() {
           rejectionCount == 6 ? teaseCat :
             cursor === 'yes' ? happyCat1 :
               cursor === 'no' ? cryCat :
-                rejectionCount >= questions.length  ? sadCat : questionCat
+                rejectionCount >= questions.length ? sadCat : questionCat
         }
         alt='happycat' />
       <h1 className="text-2xl  text-center font-bold">
-        {rejectionCount > 6 ? 'Fine, I will ask someone elseee!' : rejectionCount >= questions.length  ? 'Please say yesss' : `${questions[Math.floor(rejectionCount / 1)]}`}
+        {rejectionCount > 6 ? 'Fine, I will ask someone elseee!' : rejectionCount >= questions.length ? 'Please say yesss' : `${questions[Math.floor(rejectionCount / 1)]}`}
       </h1>
       {rejectionCount >= 1 && (
         <DraggableGift giftProp={chocolate} />
@@ -69,18 +69,18 @@ export default function Home() {
         <DraggableGift giftProp={letter} opens={true} />
       )}
       <div className="flex flex-row gap-10">
+        <Link href="/wifey" className='z-10'>
+          <button
+            className={` ${rejectionCount > 0 ? 'px-20' : 'px-10'
+              } py-2 rounded-lg text-white mt-5 bg-candy hover:bg-candy/70 border-2 z-10`}
+            onMouseEnter={() => setCursor('yes')}
+            onMouseLeave={() => setCursor('default')
+            }
+          >
 
-        <button
-          className={` ${rejectionCount > 0 ? 'px-20' : 'px-10'
-            } py-2 rounded-lg text-white mt-5 bg-candy hover:bg-candy/70 border-2 z-10`}
-          onMouseEnter={() => setCursor('yes')}
-          onMouseLeave={() => setCursor('default')
-          }
-        >
-          <Link href="/wifey">
             {rejectionCount > 6 ? `I wass kiddinggg, its a yesssssssssss ml!` : "Yesss"}
-          </Link>
-        </button>
+          </button>
+        </Link>
         <Link href="/sad">
           <button
             id='noButton'
